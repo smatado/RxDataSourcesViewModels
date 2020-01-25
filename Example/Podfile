@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxDataSourcesViewModels_Example' do
+  pod 'RxDataSourcesViewModels', :path => '../'
+
+  target 'RxDataSourcesViewModels_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
