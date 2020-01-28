@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iEF-qr-I2h">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <!--Authors View Controller-->
+        <scene sceneID="HyN-Oa-Exb">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="RxDataSourcesViewModels_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <viewController id="iEF-qr-I2h" customClass="AuthorsViewController" customModule="RxDataSourcesViewModels_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dRl-mY-PwR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="r5I-ks-1Uk">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXa-C4-uSo">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IXa-C4-uSo" firstAttribute="top" secondItem="r5I-ks-1Uk" secondAttribute="bottom" id="3Kh-mg-Euk"/>
+                            <constraint firstItem="IXa-C4-uSo" firstAttribute="trailing" secondItem="1DY-B3-3Aj" secondAttribute="trailing" id="8pn-bL-SHf"/>
+                            <constraint firstItem="1DY-B3-3Aj" firstAttribute="trailing" secondItem="r5I-ks-1Uk" secondAttribute="trailing" id="KFo-Ul-PYR"/>
+                            <constraint firstItem="1DY-B3-3Aj" firstAttribute="bottom" secondItem="IXa-C4-uSo" secondAttribute="bottom" id="KfI-aN-Oae"/>
+                            <constraint firstItem="IXa-C4-uSo" firstAttribute="leading" secondItem="1DY-B3-3Aj" secondAttribute="leading" id="bUd-fU-Udw"/>
+                            <constraint firstItem="r5I-ks-1Uk" firstAttribute="top" secondItem="1DY-B3-3Aj" secondAttribute="top" id="cFa-LU-rNe"/>
+                            <constraint firstItem="r5I-ks-1Uk" firstAttribute="leading" secondItem="1DY-B3-3Aj" secondAttribute="leading" id="fmi-NG-BNj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1DY-B3-3Aj"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="r5I-ks-1Uk" id="7WJ-C2-F7o"/>
+                        <outlet property="toolBar" destination="IXa-C4-uSo" id="f8V-0H-5r1"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mii-o9-E4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-2943.4782608695655" y="-1665.4017857142856"/>
         </scene>
     </scenes>
 </document>

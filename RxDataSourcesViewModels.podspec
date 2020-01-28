@@ -1,42 +1,22 @@
-#
-# Be sure to run `pod lib lint RxDataSourcesViewModels.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
+    
   s.name             = 'RxDataSourcesViewModels'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of RxDataSourcesViewModels.'
+  s.summary          = 'Easily configure yours cells with ViewModels and RxSwift in a declarative way without the DataSources boilerplate.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = "RxDataSourcesViewModels is a lightweight library that allows you to easily use your ViewModels with RxDataSources. You don’t need to do all the boilerplate to configure your cells for each TableView of your project. First  implement 2 protocols in your Cells and cell’s ViewModels. Then just create a ViewModel to transform your data models to cell’s ViewModels with the magic of RxSwift in a more declarative way."
 
   s.homepage         = 'https://github.com/smatado/RxDataSourcesViewModels'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'smatado' => 'sgmatado@gmail.com' }
   s.source           = { :git => 'https://github.com/smatado/RxDataSourcesViewModels.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
-
+  s.swift_versions = '5.0'
+  s.ios.deployment_target = '11.0'
   s.source_files = 'RxDataSourcesViewModels/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'RxDataSourcesViewModels' => ['RxDataSourcesViewModels/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'RxSwift'
+  s.dependency 'RxCocoa'
+  s.dependency 'RxDataSources'
+  
 end

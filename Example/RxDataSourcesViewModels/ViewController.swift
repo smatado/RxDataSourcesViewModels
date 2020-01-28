@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxDataSourcesViewModels
 
 class ViewController: UIViewController {
 
