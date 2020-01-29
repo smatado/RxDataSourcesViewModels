@@ -46,9 +46,9 @@ public struct ViewModelItem<IdentityType: Hashable>: IdentifiableType, Equatable
     /// - parameter canBeEdited: Boolean indicating if the item can be edited.
     /// - parameter canBeMoved: Boolean indicating if the item can be moved.
 
-    public init<ViewModel: CellViewModelType>(viewModel: ViewModel, cellIdentifier: String, identity: IdentityType, canBeEdited: Bool = false, canBeMoved: Bool = false) {
+    public init<ViewModel: CellViewModelType>(viewModel: ViewModel, cellIdentifier: String? = nil, identity: IdentityType, canBeEdited: Bool = false, canBeMoved: Bool = false) {
         self.viewModel = viewModel
-        self.cellIdentifier = cellIdentifier
+        self.cellIdentifier = cellIdentifier ?? viewModel.cellIdentifier
         self.identity = identity
         self.canBeEdited = canBeEdited
         self.canBeMoved = canBeMoved

@@ -8,52 +8,16 @@
 
 import RxSwift
 import RxCocoa
-import RxDataSources
 import RxDataSourcesViewModels
 
-class AuthorsViewModel: ViewModelType {
+class AuthorsViewModel {
     
-    struct Input {
-        let itemDeleted: ControlEvent<IndexPath>
-        let itemMoved: ControlEvent<ItemMovedEvent>
-    }
-    
-    struct Output {
-        let sections: Driver<[ViewModelItemsSection<String>]>
-    }
-
     // MARK: - Private properties
     
     private let store = AuthorsStore()
     private let disposeBag = DisposeBag()
 
-    // MARK: - Public functions
-
-    func transform(_ input: Input) -> Output {
-        
-        let authorsSection = store.authors
-            .map(viewModelItems)
-            .map(section)
-        
-        handleDelete(input.itemDeleted, authorsSection: authorsSection)
-        handleMove(input.itemMoved)
-
-        return Output(sections: sectionsDriver(from: authorsSection))
-    }
-    
-    private func viewModelItems(from authors: [Author]) -> [ViewModelItem<String>] {
-        return authors.map(viewModelItem)
-    }
-    
-    private func viewModelItem(from author: Author) -> ViewModelItem<String> {
-        let viewModel = AuthorCellViewModel.init(author: author)
-        return ViewModelItem(viewModel: viewModel,cellIdentifier: viewModel.cellIdentifier,
-                             identity: author.identity,canBeEdited: true, canBeMoved: true)
-    }
-    
-    private func section(from viewModels: [ViewModelItem<String>]) -> ViewModelItemsSection<String> {
-        return ViewModelItemsSection(viewModels: viewModels, identity: "AuthorSection")
-    }
+    // MARK: - Private functions
     
     private func handleDelete(_ itemDeleted: ControlEvent<IndexPath>,
                               authorsSection: Observable<ViewModelItemsSection<String>>) {
@@ -79,5 +43,50 @@ class AuthorsViewModel: ViewModelType {
     private func sectionsDriver(from authorsSection: Observable<ViewModelItemsSection<String>>) -> Driver<[ViewModelItemsSection<String>]> {
         return authorsSection.map { [$0] }
             .asDriver(onErrorJustReturn: [])
+    }
+}
+
+// MARK: - ViewModelType
+
+extension AuthorsViewModel: ViewModelType {
+    
+    struct Input {
+        let itemDeleted: ControlEvent<IndexPath>
+        let itemMoved: ControlEvent<ItemMovedEvent>
+    }
+    
+    struct Output {
+        let sections: Driver<[ViewModelItemsSection<String>]>
+    }
+
+    func transform(_ input: Input) -> Output {
+        
+        let authorsSection = store.authors
+            .map(viewModelItems)
+            .map(section)
+        
+        handleDelete(input.itemDeleted, authorsSection: authorsSection)
+        handleMove(input.itemMoved)
+
+        return Output(sections: sectionsDriver(from: authorsSection))
+    }
+}
+
+// MARK: - DataSourceViewModelType
+
+extension AuthorsViewModel: DataSourceViewModelType {
+    
+    typealias ModelType = Author
+    typealias IdentityType = String
+    
+    func viewModelItem(fromModel model: Author) -> ViewModelItem<String> {
+        ViewModelItem(viewModel: AuthorCellViewModel.init(author: model),
+                      identity: model.identity,
+                      canBeEdited: true,
+                      canBeMoved: true)
+    }
+
+    func section(fromViewModelItems viewModelItems: [ViewModelItem<String>]) -> ViewModelItemsSection<String> {
+        return ViewModelItemsSection(viewModels: viewModelItems, identity: "AuthorSection")
     }
 }

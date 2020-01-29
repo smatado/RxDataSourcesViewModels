@@ -39,3 +39,42 @@ public protocol CellViewModelConfigurable {
     */
     func configure(with viewModel: CellViewModelType)
 }
+
+/// Optional: Protocol that could be implemented by your ViewModel to transform the data to DataSource items and sections.
+public protocol DataSourceViewModelType {
+    
+    associatedtype ModelType
+    associatedtype IdentityType: Hashable
+
+    /**
+    Transforms an array of models to an array of `ViewModelItem`. A default function is already implemented
+     if you just want to map your array of models as is.
+    
+    - parameter models: Models to transform.
+    - Returns: An array of `ViewModelItem` representing your models.
+    */
+    func viewModelItems(fromModels models: [ModelType]) -> [ViewModelItem<IdentityType>]
+    
+    /**
+    Transforms a model to a `ViewModelItem`. You must create a ViewModel inside this function from the model provided.
+    
+    - parameter model: Model to transform.
+    - Returns: A `ViewModelItem` representing your model.
+    */
+    func viewModelItem(fromModel model: ModelType) -> ViewModelItem<IdentityType>
+    
+    /**
+    Creates a section from an array of `ViewModelItem`.  You must provide a unique identifier for each Section.
+    
+    - parameter viewModels: An array of `ViewModelItems`.
+    - Returns: A `ViewModelItemsSection`.
+    */
+    func section(fromViewModelItems viewModelsItems: [ViewModelItem<IdentityType>]) -> ViewModelItemsSection<IdentityType>
+}
+
+public extension DataSourceViewModelType {
+    
+    func viewModelItems(fromModels models: [ModelType]) -> [ViewModelItem<IdentityType>] {
+        return models.map { viewModelItem(fromModel: $0) }
+    }
+}
